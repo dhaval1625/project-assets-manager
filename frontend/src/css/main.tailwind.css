@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+   @apply font-sans font-normal leading-tight bg-dark text-white
+}
+
+.link {
+   @apply hover:text-primary-200 cursor-pointer transition duration-200 break-all;
+   
+}
+
+.link:not(.link-full) {
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}  
+
+.link-full {
+   max-width: 600px;
+}
