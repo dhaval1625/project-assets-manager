@@ -25,7 +25,8 @@ export default {
             }
          },
          boxShadow: {
-            'xl': '0 35px 60px -15px rgb(255 255 255 / 30%)',
+            'xl': '0 35px 60px -5px rgb(255 255 255 / 30%)',
+            'lg': '0 10px 20px -2px rgb(255 255 255 / 30%)',
           }
       },
    },
