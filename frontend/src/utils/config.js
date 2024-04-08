@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://project-assets-manager.vercel.app/';
+export const BASE_URL = 'https://project-assets-manager.onrender.com/';
 // export const BASE_URL = 'http://localhost:8000/';
 
 // project routes
