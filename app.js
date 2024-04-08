@@ -26,6 +26,10 @@ app.use(morgan('combined', { stream: logStream }));
 app.use('/auth', authRoutes);
 app.use('/project', projectRoutes);
 
+app.use('/', (req,res) => {
+   return res.send('<h1>App running!</h1>')
+})
+
 // error routes
 app.use(notFound);
 app.use(sendError);
