@@ -1,6 +1,7 @@
-const DB_URL =
-   'mongodb+srv://dhavalladani:flzf741jSyFe9Quv@meetups.8x5rn0o.mongodb.net/project-assets-manager?retryWrites=true&w=majority';
+require('dotenv').config();
 
-const JWT_SECRET = 'why-so-serious-told-the-joker-once in The Dart Knight $@3423%@#45532';
+const DB_URL = process.env.DB_URL;
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 module.exports = { DB_URL, JWT_SECRET };
