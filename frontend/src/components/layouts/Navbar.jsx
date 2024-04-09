@@ -39,11 +39,11 @@ function Navbar() {
                            Home
                         </NavLink>
                      </li>
-                     {/* <li>
-                        <NavLink className={linkClasses} to="/important">
-                           Important
+                     <li>
+                        <NavLink className={linkClasses} to="/recent">
+                           Current Projects
                         </NavLink>
-                     </li> */}
+                     </li>
                      <li>
                         <NavLink
                            className={linkClasses}

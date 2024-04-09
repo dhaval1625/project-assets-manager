@@ -24,6 +24,14 @@ export const formElements = [
       name: 'github',
       validationSchema: z.string(),
       label: 'Github repo',
+   },
+   {
+      id: 'f5',
+      name: 'isCurrent',
+      validationSchema: z.boolean(),
+      label: 'Are you currently working on this project?',
+      inputElement: 'switch',
+      defaultValue: true,
    }
 ]
 
@@ -32,7 +40,10 @@ const formKeysObj = {};
 
 formElements.forEach(el => {
    schemaObj[el.name] = el.validationSchema;
-   formKeysObj[el.name] = '';
+   if(el.defaultValue) {
+      formKeysObj[el.name] = el.defaultValue;
+   }
+   else formKeysObj[el.name] = '';
 })
 
 schemaObj.additionalDetails = z.array(z.object({item: z.string()}));

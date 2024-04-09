@@ -12,16 +12,18 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { formElements, formKeys, formSchemaDef } from '@/utils/project-config';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { transformAdditionalDetails, convertAdditionalToString } from '@/utils/helper';
+import AddMoreDetails from '../helper/AddMoreDetails';
+import { Switch } from '../ui/switch';
 
 const formSchema = z.object(formSchemaDef);
 
 function ProjectForm({ submitHandler, data, isLoading }) {
-
    const form = useForm({
       resolver: zodResolver(formSchema),
-      defaultValues: data ? {...data, additionalDetails: convertAdditionalToString(data.additionalDetails)} : formKeys,
+      defaultValues: data
+         ? { ...data, additionalDetails: convertAdditionalToString(data.additionalDetails) }
+         : formKeys,
       resetOptions: {
          keepDirtyValues: false,
          keepErrors: false,
@@ -43,20 +45,30 @@ function ProjectForm({ submitHandler, data, isLoading }) {
    return (
       <div className="max-w-[600px] mx-auto">
          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form
+               onSubmit={form.handleSubmit(onSubmit)}
+               className="space-y-8"
+            >
                {formElements.map((el, idx) => (
                   <FormField
                      key={el.id}
                      control={form.control}
                      name={el.name}
                      render={({ field }) => (
-                        <FormItem>
+                        <FormItem className={`${el.inputElement === 'switch' ? "flex items-center space-x-3 space-y-0" : ''}`}>
                            <FormLabel>{el.label}</FormLabel>
                            <FormControl>
-                              <Input
-                                 placeholder={el.placeholder || 'Enter ' + el.label}
-                                 {...field}
-                              />
+                              {el.inputElement === 'switch' ? (
+                                 <Switch
+                                    checked={field.value}
+                                    onCheckedChange={field.onChange}
+                                 />
+                              ) : (
+                                 <Input
+                                    placeholder={el.placeholder || 'Enter ' + el.label}
+                                    {...field}
+                                 />
+                              )}
                            </FormControl>
                            <FormMessage />
                         </FormItem>
@@ -72,7 +84,10 @@ function ProjectForm({ submitHandler, data, isLoading }) {
                         <FormItem>
                            <FormLabel>Additional Detail {idx + 1}</FormLabel>
                            <FormControl>
-                              <Input placeholder="Title - Description" {...field} />
+                              <Input
+                                 placeholder="Title - Description"
+                                 {...field}
+                              />
                            </FormControl>
                            <FormMessage />
                         </FormItem>
@@ -80,25 +95,13 @@ function ProjectForm({ submitHandler, data, isLoading }) {
                   />
                ))}
                <div className="flex items-center justify-between">
-                  <Button isLoading={isLoading} type="submit">Submit</Button>
-                  <TooltipProvider delayDuration={300}>
-                     <Tooltip>
-                        <TooltipTrigger asChild>
-                           <Button
-                              onClick={() => append({ item: '' })}
-                              className="text-3xl rounded-full"
-                              type="button"
-                              variant="outline"
-                              size="icon"
-                           >
-                              +
-                           </Button>
-                        </TooltipTrigger>
-                        <TooltipContent side="bottom">
-                           <p>Add more details</p>
-                        </TooltipContent>
-                     </Tooltip>
-                  </TooltipProvider>
+                  <Button
+                     isLoading={isLoading}
+                     type="submit"
+                  >
+                     Submit
+                  </Button>
+                  <AddMoreDetails clickHandler={() => append({ item: '' })} />
                </div>
             </form>
          </Form>

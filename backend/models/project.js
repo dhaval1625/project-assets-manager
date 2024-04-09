@@ -1,23 +1,27 @@
 const { Schema, model } = require('mongoose');
 
-const projectSchema = new Schema({
-   title: {
-      type: String,
-      required: true,
+const projectSchema = new Schema(
+   {
+      title: {
+         type: String,
+         required: true,
+      },
+      primaryUrl: String,
+      figma: String,
+      githubRepo: String,
+      additionalDetails: [
+         {
+            title: String,
+            description: String,
+         },
+      ],
+      userId: {
+         type: Schema.Types.ObjectId,
+         ref: 'User',
+      },
+      isCurrent: Boolean,
    },
-   primaryUrl: String,
-   figma: String,
-   githubRepo: String,
-   additionalDetails: [
-      {
-         title: String,
-         description: String
-      }
-   ],
-   userId: {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
-   },
-})
+   { timestamps: true }
+);
 
 module.exports = model('Project', projectSchema);

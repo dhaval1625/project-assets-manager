@@ -15,6 +15,7 @@ export default {
                DEFAULT: '#82c6ef',
                100: '#6da9b9',
                200: '#0482ce',
+               300: '#236495',
             },
             white: {
                DEFAULT: '#fff',
@@ -22,11 +23,15 @@ export default {
             },
             danger: {
                DEFAULT: '#fa6f6feb',
+            },
+            gray: {
+               DEFAULT: '#9c9c9c'
             }
          },
          boxShadow: {
             'xl': '0 35px 60px -5px rgb(255 255 255 / 30%)',
             'lg': '0 10px 20px -2px rgb(255 255 255 / 30%)',
+            'sm': '0 10px 20px -2px rgb(255 255 255 / 10%)',
           }
       },
    },

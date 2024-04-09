@@ -3,7 +3,12 @@ const { genError } = require('../utils/helper');
 
 exports.getProjects = async (req, res, next) => {
    try {
-      const projects = await Project.find({ userId: req.userId });
+      let findCriteria = { userId: req.userId }
+      const { filter } = req.query;
+      if(filter === 'recent') {
+         findCriteria.isCurrent = true;
+      }
+      const projects = await Project.find(findCriteria);
       res.status(200).json({
          data: projects,
          status: 1,
@@ -33,7 +38,7 @@ exports.getProject = async (req, res, next) => {
 
 exports.addProject = async (req, res, next) => {
    try {
-      const { projectTitle, url, figma, github, additionalDetails } = req.body;
+      const { projectTitle, url, figma, github, additionalDetails, isCurrent } = req.body;
 
       const project = new Project({
          title: projectTitle,
@@ -42,6 +47,7 @@ exports.addProject = async (req, res, next) => {
          figma,
          additionalDetails,
          userId: req.userId,
+         isCurrent,
       });
       const resProject = await project.save();
       res.status(200).json({
@@ -57,7 +63,7 @@ exports.addProject = async (req, res, next) => {
 exports.editProject = async (req, res, next) => {
    try {
       const { id } = req.query;
-      const { projectTitle, url, figma, github, additionalDetails } = req.body;
+      const { projectTitle, url, figma, github, additionalDetails, isCurrent } = req.body;
       const project = await Project.findById(id);
       if (project.userId.toString() !== req.userId) {
          genError(401, 'You are not authorized to edit this asset!');
@@ -67,6 +73,7 @@ exports.editProject = async (req, res, next) => {
       project.figma = figma;
       project.githubRepo = github;
       project.additionalDetails = additionalDetails;
+      project.isCurrent = isCurrent;
 
       const resProject = await project.save();
       res.status(200).json({

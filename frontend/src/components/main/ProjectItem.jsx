@@ -20,6 +20,7 @@ import { PROJECT_DELETE_URL } from '@/utils/config';
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Badge } from '../ui/badge';
 
 function LinkPopup({ data }) {
    return (
@@ -28,9 +29,16 @@ function LinkPopup({ data }) {
             <TooltipTrigger asChild>
                <p className="link">{data}</p>
             </TooltipTrigger>
-            <TooltipContent color="dark" className="flex items-center space-x-3">
+            <TooltipContent
+               color="dark"
+               className="flex items-center space-x-3"
+            >
                {isValidUrl(data) ? (
-                  <a target="_blank" className="link link-full" href={data}>
+                  <a
+                     target="_blank"
+                     className="link link-full"
+                     href={data}
+                  >
                      {data}
                   </a>
                ) : (
@@ -52,11 +60,12 @@ function LinkPopup({ data }) {
 }
 
 function ProjectItem({ details }) {
-   const token = useSelector(state => state.auth.token);
+   const token = useSelector((state) => state.auth.token);
    const btnCloseDialog = useRef(null);
    const { mutate, isPending, isError, error } = useMutation({
-      mutationFn: id => fetchData(PROJECT_DELETE_URL + id, { method: 'DELETE', token, showSuccessMessage: true }),
-      onSuccess: data => {
+      mutationFn: (id) =>
+         fetchData(PROJECT_DELETE_URL + id, { method: 'DELETE', token, showSuccessMessage: true }),
+      onSuccess: (data) => {
          queryClient.invalidateQueries({ queryKey: ['project'] });
          btnCloseDialog.current.click();
       },
@@ -69,15 +78,24 @@ function ProjectItem({ details }) {
          </CardHeader>
          <CardContent>
             <ul className="space-y-4">
-               {projectElements.map(item => (
-                  details[item.handle] && <li className="flex items-start space-x-2" key={item.id}>
-                     <p className="shrink-0 font-medium">{item.label} :</p>
-                     <LinkPopup data={details[item.handle]} />
-                  </li>
-               ))}
+               {projectElements.map(
+                  (item) =>
+                     details[item.handle] && (
+                        <li
+                           className="flex items-start space-x-2"
+                           key={item.id}
+                        >
+                           <p className="shrink-0 font-medium">{item.label} :</p>
+                           <LinkPopup data={details[item.handle]} />
+                        </li>
+                     )
+               )}
                {details?.additionalDetails.length > 0 &&
-                  details.additionalDetails.map(item => (
-                     <li className="flex items-start space-x-2" key={item._id}>
+                  details.additionalDetails.map((item) => (
+                     <li
+                        className="flex items-start space-x-2"
+                        key={item._id}
+                     >
                         <p className="shrink-0 font-medium">{item.title} :</p>
                         <LinkPopup data={item.description} />
                      </li>
@@ -85,34 +103,49 @@ function ProjectItem({ details }) {
             </ul>
          </CardContent>
          <CardFooter className="mt-auto">
-            <div className="flex items-center space-x-2">
-               <Link to={'/edit/' + details._id} className={buttonVariants({ size: 'sm' })}>
-                  Edit
-               </Link>
-               <Dialog>
-                  <DialogTrigger className={buttonVariants({ variant: 'destructive', size: 'sm' })}>
-                     Delete
-                  </DialogTrigger>
-                  <DialogContent>
-                     <DialogHeader>
-                        <DialogTitle>Are you absolutely sure?</DialogTitle>
-                        <DialogDescription>
-                           This action cannot be undone. This will permanently delete the project
-                           data.
-                        </DialogDescription>
-                     </DialogHeader>
-                     <DialogFooter>
-                        <DialogClose asChild>
-                           <Button ref={btnCloseDialog} variant="outline">
-                              Close
+            <div className="flex items-center justify-between w-full">
+               <div className="flex items-center space-x-2">
+                  <Link
+                     to={'/edit/' + details._id}
+                     className={buttonVariants({ size: 'sm' })}
+                  >
+                     Edit
+                  </Link>
+                  <Dialog>
+                     <DialogTrigger
+                        className={buttonVariants({ variant: 'destructive', size: 'sm' })}
+                     >
+                        Delete
+                     </DialogTrigger>
+                     <DialogContent>
+                        <DialogHeader>
+                           <DialogTitle>Are you absolutely sure?</DialogTitle>
+                           <DialogDescription>
+                              This action cannot be undone. This will permanently delete the project
+                              data.
+                           </DialogDescription>
+                        </DialogHeader>
+                        <DialogFooter>
+                           <DialogClose asChild>
+                              <Button
+                                 ref={btnCloseDialog}
+                                 variant="outline"
+                              >
+                                 Close
+                              </Button>
+                           </DialogClose>
+                           <Button
+                              isLoading={isPending}
+                              onClick={() => mutate(details._id)}
+                              variant="destructive"
+                           >
+                              Delete
                            </Button>
-                        </DialogClose>
-                        <Button isLoading={isPending} onClick={() => mutate(details._id)} variant="destructive">
-                           Delete
-                        </Button>
-                     </DialogFooter>
-                  </DialogContent>
-               </Dialog>
+                        </DialogFooter>
+                     </DialogContent>
+                  </Dialog>
+               </div>
+               {details.isCurrent && <Badge>Recent</Badge>}
             </div>
          </CardFooter>
       </Card>

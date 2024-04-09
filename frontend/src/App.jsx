@@ -19,7 +19,7 @@ const router = createBrowserRouter([
       children: [
          { path: '', element: <ProtectedRoute component={<Dashboard />} /> },
          { path: 'add', element: <ProtectedRoute component={<AddProject />} /> },
-         { path: 'important', element: <ProtectedRoute component={<ImpProject />} /> },
+         { path: 'recent', element: <ProtectedRoute component={<ImpProject />} /> },
          { path: 'edit/:projectId', element: <ProtectedRoute component={<EditProject />} /> },
       ],
    },
