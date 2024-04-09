@@ -74,7 +74,7 @@ export const loginFormElements = [
          .min(6, { message: 'Password must be atleast 6 characters long!' }),
       label: 'Password',
       type: 'password',
-      autoComplete: 'new-password',
+      autoComplete: 'current-password',
    },
 ];
 

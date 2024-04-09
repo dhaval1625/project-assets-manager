@@ -17,6 +17,7 @@ function Login() {
          dispatch(authActions.loginUser({
             token: data.token,
             userName: data.name,
+            expirationTime: data.expirationTime
          }));
          navigate('/');
       },

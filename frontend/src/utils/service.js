@@ -31,7 +31,7 @@ export default async function fetchData(url, config) {
       return data.data;
    } catch (error) {
       console.log(error);
-      data.status === 0 && displayMessage(error.message, true);
+      error.status === 0 && displayMessage(error.message, true);
       throw new Error(error.message);
    }
 }

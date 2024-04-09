@@ -1,5 +1,5 @@
-export const BASE_URL = 'https://project-assets-manager.onrender.com/';
-// export const BASE_URL = 'http://localhost:8000/';
+// export const BASE_URL = 'https://project-assets-manager.onrender.com/';
+export const BASE_URL = 'http://localhost:8000/';
 
 // project routes
 export const PROJECT_LIST_URL = BASE_URL + 'project/all';
