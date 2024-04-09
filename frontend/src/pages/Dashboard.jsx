@@ -18,7 +18,7 @@ function Dashboard() {
       return <h1 className="font-medium text-2xl">No projects found! Please add one</h1>;
 
    return (
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-3 xl:grid-cols-4 gap-4">
          {data.map(item => (
             <ProjectItem key={item._id} details={item} />
          ))}

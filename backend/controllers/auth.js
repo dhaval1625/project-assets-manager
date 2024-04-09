@@ -2,7 +2,7 @@ const User = require('../models/user');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../utils/config');
+const { JWT_SECRET, TOKEN_EXP_HOURS } = require('../utils/config');
 const { genError, handleValidation } = require('../utils/helper');
 
 exports.signup = async (req, res, next) => {
@@ -56,10 +56,13 @@ exports.login = async (req, res, next) => {
             name: user.name,
          },
          JWT_SECRET,
-         { expiresIn: '12h' }
+         { expiresIn: `${TOKEN_EXP_HOURS}h` }
       );
+
+      const expirationTime = Date.now() + (TOKEN_EXP_HOURS * 60 * 60 * 1000);
+
       res.status(200).json({
-         data: { token, userId: user._id.toString() },
+         data: { token, userId: user._id.toString(), expirationTime },
          status: 1,
          message: 'Login successfull!',
       });
