@@ -20,3 +20,12 @@ body {
 .link-full {
    max-width: 600px;
 }
+
+.icon {
+   @apply flex overflow-hidden
+}
+
+.icon svg {
+   max-width: 100%;
+   width: 100%;
+}

@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { useDispatch, useSelector } from 'react-redux';
 import { Fragment } from 'react';
 import { authActions } from '@/store/auth-slice';
+import { Logo } from '../icons/Icon';
 
 function Navbar() {
    const linkClasses = ({ isActive }) =>
@@ -23,10 +24,15 @@ function Navbar() {
             <ul className="flex items-center space-x-5">
                <li>
                   <Link
-                     className="text-white-100 font-bold text-xl leading-none"
+                     className="text-white-100 font-bold text-xl leading-none flex items-center space-x-2"
                      to="/"
                   >
-                     <p>PROJECT ASSETS</p> <p className="tracking-[11.3px]">MANAGER</p>
+                     <div className="icon max-w-10">
+                        <Logo />
+                     </div>
+                     <div>
+                        <p>PROJECT ASSETS</p> <p className="tracking-[11.3px]">MANAGER</p>
+                     </div>
                   </Link>
                </li>
                {isAuth && (
@@ -40,7 +46,10 @@ function Navbar() {
                         </NavLink>
                      </li>
                      <li>
-                        <NavLink className={linkClasses} to="/recent">
+                        <NavLink
+                           className={linkClasses}
+                           to="/recent"
+                        >
                            Current Projects
                         </NavLink>
                      </li>
@@ -81,7 +90,7 @@ function Navbar() {
                ) : (
                   <Fragment>
                      <li>
-                        <h3 className='text-sm font-semibold text-white'>Hi, {userName}</h3>
+                        <h3 className="text-sm font-semibold text-white">Hi, {userName}</h3>
                      </li>
                      <li>
                         <Button

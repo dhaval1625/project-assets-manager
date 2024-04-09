@@ -49,4 +49,12 @@ export function displayMessage(message, isError) {
    });
 }
 
+const dateOptions = {
+   year: 'numeric',
+   month: 'short',
+   day: 'numeric',
+};
 
+export function formatDate(date) {
+   return new Date(date).toLocaleDateString('en-US', dateOptions);
+};

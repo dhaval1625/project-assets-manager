@@ -1,5 +1,5 @@
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { copyToClipboard, isValidUrl } from '@/utils/helper';
+import { copyToClipboard, formatDate, isValidUrl } from '@/utils/helper';
 import { projectElements } from '@/utils/project-config';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button, buttonVariants } from '../ui/button';
@@ -78,6 +78,7 @@ function ProjectItem({ details }) {
          </CardHeader>
          <CardContent>
             <ul className="space-y-4">
+               <li className=''>{formatDate(details.createdAt)}</li>
                {projectElements.map(
                   (item) =>
                      details[item.handle] && (

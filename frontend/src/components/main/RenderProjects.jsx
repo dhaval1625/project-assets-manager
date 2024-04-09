@@ -22,6 +22,8 @@ function RenderProjects({ url, queryKey, fallback }) {
    if (data.length === 0)
       return <h1 className="font-medium text-2xl">{fallback}</h1>;
 
+   console.log(data);
+
    return (
       <div className="grid grid-cols-3 xl:grid-cols-4 gap-4">
          {data.map((item) => (
