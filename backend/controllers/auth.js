@@ -62,7 +62,7 @@ exports.login = async (req, res, next) => {
       const expirationTime = Date.now() + (TOKEN_EXP_HOURS * 60 * 60 * 1000);
 
       res.status(200).json({
-         data: { token, userId: user._id.toString(), expirationTime },
+         data: { token, userId: user._id.toString(), expirationTime, name: user.name },
          status: 1,
          message: 'Login successfull!',
       });

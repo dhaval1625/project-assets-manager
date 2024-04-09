@@ -11,7 +11,8 @@ function Navbar() {
          'hover:text-primary-100 transition duration-200',
       ].join(' ');
 
-   const isAuth = useSelector(state => state.auth.isAuth);
+   const isAuth = useSelector((state) => state.auth.isAuth);
+   const userName = useSelector((state) => state.auth.userName);
    const dispatch = useDispatch();
 
    const logoutHandler = () => dispatch(authActions.logoutUser());
@@ -21,14 +22,20 @@ function Navbar() {
          <nav>
             <ul className="flex items-center space-x-5">
                <li>
-                  <Link className="text-white-100 font-bold text-xl leading-none" to="/">
+                  <Link
+                     className="text-white-100 font-bold text-xl leading-none"
+                     to="/"
+                  >
                      <p>PROJECT ASSETS</p> <p className="tracking-[11.3px]">MANAGER</p>
                   </Link>
                </li>
                {isAuth && (
                   <Fragment>
                      <li>
-                        <NavLink className={linkClasses} to="/">
+                        <NavLink
+                           className={linkClasses}
+                           to="/"
+                        >
                            Home
                         </NavLink>
                      </li>
@@ -38,7 +45,10 @@ function Navbar() {
                         </NavLink>
                      </li> */}
                      <li>
-                        <NavLink className={linkClasses} to="/add">
+                        <NavLink
+                           className={linkClasses}
+                           to="/add"
+                        >
                            Add Project
                         </NavLink>
                      </li>{' '}
@@ -52,20 +62,36 @@ function Navbar() {
                {!isAuth ? (
                   <Fragment>
                      <li>
-                        <NavLink className={linkClasses} to="/auth/signup">
+                        <NavLink
+                           className={linkClasses}
+                           to="/auth/signup"
+                        >
                            Signup
                         </NavLink>
                      </li>
                      <li>
-                        <NavLink className={linkClasses} to="/auth/login">
+                        <NavLink
+                           className={linkClasses}
+                           to="/auth/login"
+                        >
                            Login
                         </NavLink>
                      </li>
                   </Fragment>
                ) : (
-                  <li>
-                     <Button onClick={logoutHandler} variant="outline">Logout</Button>
-                  </li>
+                  <Fragment>
+                     <li>
+                        <h3 className='text-sm font-semibold text-white'>Hi, {userName}</h3>
+                     </li>
+                     <li>
+                        <Button
+                           onClick={logoutHandler}
+                           variant="outline"
+                        >
+                           Logout
+                        </Button>
+                     </li>
+                  </Fragment>
                )}
             </ul>
          </nav>
