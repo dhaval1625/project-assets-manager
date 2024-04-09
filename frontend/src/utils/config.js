@@ -1,5 +1,13 @@
-// export const BASE_URL = 'https://project-assets-manager.onrender.com/';
-export const BASE_URL = 'http://localhost:8000/';
+const _envMode = import.meta.env.MODE;
+let _baseURL = 'https://project-assets-manager.onrender.com/';
+
+if(_envMode === 'development') {
+   _baseURL = 'http://localhost:8000/';
+}
+
+console.log('Mode - ' + _envMode);
+
+export const BASE_URL = _baseURL;
 
 // project routes
 export const PROJECT_LIST_URL = BASE_URL + 'project/all';
