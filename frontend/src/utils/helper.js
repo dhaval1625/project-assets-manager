@@ -58,3 +58,11 @@ const dateOptions = {
 export function formatDate(date) {
    return new Date(date).toLocaleDateString('en-US', dateOptions);
 };
+
+export function appendQuery(url, queryArr) {
+   const urlObj = new URL(url);
+   queryArr.forEach(({query, value}) => {
+      urlObj.searchParams.append(query, value);
+   })
+   return urlObj.toString();
+}

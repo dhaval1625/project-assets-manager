@@ -1,16 +1,23 @@
 const Project = require('../models/project');
+const { RES_PER_PAGE } = require('../utils/config');
 const { genError } = require('../utils/helper');
 
 exports.getProjects = async (req, res, next) => {
    try {
-      let findCriteria = { userId: req.userId }
-      const { filter } = req.query;
-      if(filter === 'recent') {
+      let findCriteria = { userId: req.userId };
+      const { filter, page } = req.query;
+      if (filter === 'recent') {
          findCriteria.isCurrent = true;
       }
-      const projects = await Project.find(findCriteria);
+      const curPage = +page;
+      const totalItems = await Project.countDocuments(findCriteria);
+      const totalPages = Math.ceil(totalItems / RES_PER_PAGE);
+
+      const projects = await Project.find(findCriteria)
+         .skip((curPage - 1) * RES_PER_PAGE)
+         .limit(RES_PER_PAGE);
       res.status(200).json({
-         data: projects,
+         data: { list: projects, totalItems, totalPages },
          status: 1,
          message: 'Projects fetched successfully!',
       });
