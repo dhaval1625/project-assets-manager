@@ -1,5 +1,7 @@
 # Project Assets Manager
 
+Simple but powerful CRUD App for managing all your project assets under one place
+
 ## Purpose
 - Manage all assets needed for a project at one place
 - Mark project as working currently for easy access
