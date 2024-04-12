@@ -11,7 +11,6 @@ function AddProject() {
    const { mutate, isPending, isError, error } = useMutation({
       mutationFn: payload => fetchData(PROJECT_ADD_URL, { method: 'POST', payload, token, showSuccessMessage: true }),
       onSuccess: data => {
-         console.log('add project response', data);
          queryClient.invalidateQueries({ queryKey: ['project'] });
          navigate('/');
       },

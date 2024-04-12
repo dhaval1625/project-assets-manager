@@ -25,7 +25,7 @@ exports.signup = async (req, res, next) => {
       const createdUser = await user.save();
       res.status(201).json({
          status: 1,
-         message: 'Signup successfull!',
+         message: 'Signup successful!',
          data: {
             userId: createdUser._id,
          },

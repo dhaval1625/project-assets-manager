@@ -30,7 +30,7 @@ export default async function fetchData(url, config) {
       config.showSuccessMessage && displayMessage(data.message);
       return data.data;
    } catch (error) {
-      console.log(error);
+      console.log('Fetch Response Error', error);
       error.status === 0 && displayMessage(error.message, true);
       throw new Error(error.message);
    }

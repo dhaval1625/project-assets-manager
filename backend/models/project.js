@@ -24,4 +24,6 @@ const projectSchema = new Schema(
    { timestamps: true }
 );
 
+projectSchema.index({ title: 'text' });
+
 module.exports = model('Project', projectSchema);

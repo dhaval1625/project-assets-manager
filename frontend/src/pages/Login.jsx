@@ -13,7 +13,6 @@ function Login() {
    const { mutate, isPending, isError, error } = useMutation({
       mutationFn: payload => fetchData(LOGIN_URL, { method: 'POST', payload }),
       onSuccess: data => {
-         console.log(data);
          dispatch(authActions.loginUser({
             token: data.token,
             userName: data.name,

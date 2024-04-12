@@ -56,6 +56,14 @@ function Navbar() {
                      <li>
                         <NavLink
                            className={linkClasses}
+                           to="/find"
+                        >
+                           Find
+                        </NavLink>
+                     </li>
+                     <li>
+                        <NavLink
+                           className={linkClasses}
                            to="/add"
                         >
                            Add Project

@@ -13,6 +13,11 @@ exports.getProjects = async (req, res, next) => {
       const totalItems = await Project.countDocuments(findCriteria);
       const totalPages = Math.ceil(totalItems / RES_PER_PAGE);
 
+      const searchQuery = req.query.search;
+      if (searchQuery) {
+         findCriteria.$text = { $search: searchQuery };
+      }
+
       const projects = await Project.find(findCriteria)
          .skip((curPage - 1) * RES_PER_PAGE)
          .limit(RES_PER_PAGE);

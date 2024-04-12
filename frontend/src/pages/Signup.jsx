@@ -8,9 +8,8 @@ import { SIGNUP_URL } from '@/utils/config';
 function Signup() {
    const navigate = useNavigate();
    const { mutate, isPending, isError, error } = useMutation({
-      mutationFn: payload => fetchData(SIGNUP_URL, { method: 'POST', payload }),
+      mutationFn: payload => fetchData(SIGNUP_URL, { method: 'POST', payload, showSuccessMessage: true }),
       onSuccess: data => {
-         console.log(data);
          navigate('/auth/login');
       },
    });

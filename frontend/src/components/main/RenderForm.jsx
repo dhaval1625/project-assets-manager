@@ -19,7 +19,6 @@ function RenderForm({ submitHandler, formElements, formKeys, formSchema, isLoadi
    });
 
    function onSubmit(values) {
-      console.log('FORM DATA VALUES',values);
       submitHandler(values);
    }
    return (
