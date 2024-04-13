@@ -15,7 +15,7 @@ exports.getProjects = async (req, res, next) => {
 
       const searchQuery = req.query.search;
       if (searchQuery) {
-         findCriteria.$text = { $search: searchQuery };
+         findCriteria.title = { $regex: searchQuery, $options: 'i' };
       }
 
       const projects = await Project.find(findCriteria)
