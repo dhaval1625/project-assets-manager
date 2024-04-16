@@ -1,3 +1,5 @@
+const { themeVariants, prefersLight, prefersDark } = require("tailwindcss-theme-variants");
+
 /** @type {import('tailwindcss').Config} */
 export default {
    content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
@@ -32,8 +34,20 @@ export default {
             'xl': '0 35px 60px -5px rgb(255 255 255 / 30%)',
             'lg': '0 10px 20px -2px rgb(255 255 255 / 30%)',
             'sm': '0 10px 20px -2px rgb(255 255 255 / 10%)',
+            'dark-lg': '0 5px 10px 0px rgb(0 0 0 / 30%)'
           }
       },
    },
-   plugins: [],
+   plugins: [
+    themeVariants({
+        themes: {
+            light: {
+               selector: ".light-theme",
+            },
+            dark: {
+               selector: ".dark-theme",
+            },
+        },
+      }),
+   ],
 };
