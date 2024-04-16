@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Fragment } from 'react';
 import { authActions } from '@/store/auth-slice';
 import { Logo } from '../icons/Icon';
+import ThemeToggle from '../ui/ThemeToggle';
 
 function Navbar() {
    const linkClasses = ({ isActive }) =>
@@ -75,7 +76,7 @@ function Navbar() {
          </nav>
 
          <nav className="flex">
-            <ul className="flex items-center space-x-5">
+            <ul className="flex items-center space-x-3">
                {!isAuth ? (
                   <Fragment>
                      <li>
@@ -97,8 +98,11 @@ function Navbar() {
                   </Fragment>
                ) : (
                   <Fragment>
-                     <li>
+                     <li className='mr-10'>
                         <h3 className="text-sm font-semibold text-white light:text-zinc-500">Hi, {userName}</h3>
+                     </li>
+                     <li>
+                        <ThemeToggle />
                      </li>
                      <li>
                         <Button

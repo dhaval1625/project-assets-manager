@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import ProtectedRoute from './components/helper/ProtectedRoute';
 import AuthRoute from './components/helper/AuthRoute';
 import FindProject from './pages/FindProject';
+import { ThemeProvider } from './components/helper/ThemeProvider';
 
 const router = createBrowserRouter([
    {
@@ -38,7 +39,9 @@ const router = createBrowserRouter([
 function App() {
    return (
       <QueryClientProvider client={queryClient}>
-         <RouterProvider router={router} />
+        <ThemeProvider defaultTheme="dark" storageKey="ui-theme">
+            <RouterProvider router={router} />
+         </ThemeProvider>
       </QueryClientProvider>
    );
 }

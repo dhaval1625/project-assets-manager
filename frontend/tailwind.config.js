@@ -46,10 +46,10 @@ export default {
     themeVariants({
         themes: {
             light: {
-               selector: ".light-theme",
+               selector: ".light",
             },
             dark: {
-               selector: ".dark-theme",
+               selector: ".dark",
             },
         },
       }),
