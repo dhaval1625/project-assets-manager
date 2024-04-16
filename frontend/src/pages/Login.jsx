@@ -23,7 +23,7 @@ function Login() {
    });
    return (
       <div>
-         <h1 className="text-center font-bold text-2xl mb-3">LOGIN</h1>
+         <h1 className="text-center font-bold text-2xl mb-3 light:text-zinc-600">LOGIN</h1>
          <RenderForm
             formElements={loginFormElements}
             formKeys={loginFormKeys}

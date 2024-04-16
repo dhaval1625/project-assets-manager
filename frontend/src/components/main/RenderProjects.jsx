@@ -24,13 +24,13 @@ function RenderProjects({ url, queryKey, fallback }) {
 
    if (isPending)
       return (
-         <h3 className="flex items-center justify-center mt-5">
+         <h3 className="flex items-center justify-center mt-5 light:text-zinc-700">
             <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Loading
          </h3>
       );
-   if (error) return <h3>An error occured : {error.message}</h3>;
+   if (error) return <h3 className='light:text-zinc-700'>An error occured : {error.message}</h3>;
 
-   if (data.list.length === 0) return <h1 className="font-medium text-2xl">{fallback}</h1>;
+   if (data.list.length === 0) return <h1 className="font-medium text-2xl light:text-zinc-700">{fallback}</h1>;
 
    return (
       <div className="space-y-5">

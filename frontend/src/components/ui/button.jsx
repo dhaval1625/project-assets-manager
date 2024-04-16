@@ -15,10 +15,10 @@ const buttonVariants = cva(
             destructive:
                'bg-danger text-primary-50 hover:bg-red-500/90',
             outline:
-               'border border-primary-200 hover:bg-primary text-primary hover:text-black',
+               'border border-primary-200 hover:bg-primary text-primary hover:text-black light:text-primary-300',
             secondary:
                'bg-primary-100 text-primary hover:bg-primary-100/80',
-            ghost: 'hover:bg-primary-100/50 hover:text-primary',
+            ghost: 'hover:bg-primary-100/50 hover:text-primary light:text-primary-300',
             link: 'text-primary underline-offset-4 hover:underline',
          },
          size: {

@@ -16,7 +16,7 @@ function Signup() {
 
    return (
       <div>
-         <h1 className="text-center font-bold text-2xl mb-3">SIGNUP</h1>
+         <h1 className="text-center font-bold text-2xl mb-3 light:text-zinc-600">SIGNUP</h1>
          <RenderForm
             formElements={signupFormElements}
             formKeys={signupFormKeys}

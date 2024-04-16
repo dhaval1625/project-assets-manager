@@ -8,8 +8,8 @@ import { Logo } from '../icons/Icon';
 function Navbar() {
    const linkClasses = ({ isActive }) =>
       [
-         isActive ? 'text-primary' : 'text-white',
-         'hover:text-primary-100 transition duration-200',
+         isActive ? 'text-primary light:text-primary-400' : 'text-white light:text-zinc-600',
+         'hover:text-primary-100 transition duration-200 light:hover:text-primary-400',
       ].join(' ');
 
    const isAuth = useSelector((state) => state.auth.isAuth);
@@ -19,7 +19,7 @@ function Navbar() {
    const logoutHandler = () => dispatch(authActions.logoutUser());
 
    return (
-      <header className="flex items-center justify-between py-7 px-10 bg-dark-100">
+      <header className="flex items-center justify-between py-7 px-10 bg-dark-100 light:bg-white-200 light:shadow-dark-md">
          <nav>
             <ul className="flex items-center space-x-5">
                <li>
@@ -27,10 +27,10 @@ function Navbar() {
                      className="text-white-100 font-bold text-xl leading-none flex items-center space-x-2"
                      to="/"
                   >
-                     <div className="icon max-w-10">
+                     <div className="icon max-w-10 shrink-0">
                         <Logo />
                      </div>
-                     <div>
+                     <div className='light:text-zinc-500'>
                         <p>PROJECT ASSETS</p> <p className="tracking-[11.3px]">MANAGER</p>
                      </div>
                   </Link>
@@ -98,7 +98,7 @@ function Navbar() {
                ) : (
                   <Fragment>
                      <li>
-                        <h3 className="text-sm font-semibold text-white">Hi, {userName}</h3>
+                        <h3 className="text-sm font-semibold text-white light:text-zinc-500">Hi, {userName}</h3>
                      </li>
                      <li>
                         <Button

@@ -26,16 +26,16 @@ function FindProject() {
    const Result = () => {
       if (isLoading)
          return (
-            <h3 className="flex items-center justify-center mt-5">
+            <h3 className="flex items-center justify-center mt-5 light:text-zinc-700">
                <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Loading
             </h3>
          );
-      if (error) return <h3>An error occured : {error.message}</h3>;
+      if (error) return <h3 className='light:text-zinc-700'>An error occured : {error.message}</h3>;
 
-      if(!data) return <h3>Enter project title for finding project</h3>
+      if(!data) return <h3 className='light:text-zinc-700'>Enter project title for finding project</h3>
 
       if (data && data.list.length === 0)
-         return <h1 className="font-medium text-2xl">No project found with this title!</h1>;
+         return <h1 className="font-medium text-2xl light:text-zinc-700">No project found with this title!</h1>;
 
       if (data) {
          return (
