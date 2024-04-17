@@ -20,10 +20,7 @@
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.3.0",
-    "mongoose": "^8.2.0",
-    "morgan": "^1.10.0",
-    "mysql2": "^3.9.1",
-    "sequelize": "^6.37.1"
+    "mongoose": "^8.2.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"
