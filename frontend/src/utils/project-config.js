@@ -46,7 +46,7 @@ formElements.forEach(el => {
    else formKeysObj[el.name] = '';
 })
 
-schemaObj.additionalDetails = z.array(z.object({item: z.string()}));
+schemaObj.additionalDetails = z.array(z.object({title: z.string(), description: z.string()}));
 
 export const formSchemaDef = schemaObj;
 export const formKeys = formKeysObj;

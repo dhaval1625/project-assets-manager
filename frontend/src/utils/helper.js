@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 export async function copyToClipboard(data) {
    await navigator.clipboard.writeText(data);
@@ -7,7 +7,7 @@ export async function copyToClipboard(data) {
 
 export function transformAdditionalDetails(data) {
    const arr = [];
-   data.forEach(item => {
+   data.forEach((item) => {
       if (item.item && item.item.length > 0) {
          const [key, value] = item.item.split(' - ');
          if (key && value) {
@@ -22,9 +22,16 @@ export function transformAdditionalDetails(data) {
 }
 
 export function convertAdditionalToString(data) {
-   return data.map(item => {
+   return data.map((item) => {
       return { item: item.title + ' - ' + item.description };
    });
+}
+
+export function sanitizeProjectFormData(data) {
+   const sanitizedAdditionalDetails = data.additionalDetails.filter(
+      (item) => !!item.title && !!item.description
+   );
+   return { ...data, additionalDetails: sanitizedAdditionalDetails };
 }
 
 export function isValidUrl(string) {
@@ -57,12 +64,12 @@ const dateOptions = {
 
 export function formatDate(date) {
    return new Date(date).toLocaleDateString('en-US', dateOptions);
-};
+}
 
 export function appendQuery(url, queryArr) {
    const urlObj = new URL(url);
-   queryArr.forEach(({query, value}) => {
+   queryArr.forEach(({ query, value }) => {
       urlObj.searchParams.append(query, value);
-   })
+   });
    return urlObj.toString();
 }
