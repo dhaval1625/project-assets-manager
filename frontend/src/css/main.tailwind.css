@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 body {
-   @apply font-sans font-normal leading-tight bg-dark text-white light:bg-white-100
+   @apply font-sans font-normal leading-tight bg-dark text-white light:bg-white-100 light:text-dark-100
 }
 
 .link {
-   @apply hover:text-primary-200 cursor-pointer transition duration-200 break-all;
+   @apply block max-w-full hover:text-primary-200 cursor-pointer transition duration-200 break-all;
    
 }
 

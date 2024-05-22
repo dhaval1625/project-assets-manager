@@ -13,6 +13,7 @@ import ProtectedRoute from './components/helper/ProtectedRoute';
 import AuthRoute from './components/helper/AuthRoute';
 import FindProject from './pages/FindProject';
 import { ThemeProvider } from './components/helper/ThemeProvider';
+import ViewProject from './pages/ViewProject';
 
 const router = createBrowserRouter([
    {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
          { path: 'add', element: <ProtectedRoute component={<AddProject />} /> },
          { path: 'recent', element: <ProtectedRoute component={<ImpProject />} /> },
          { path: 'edit/:projectId', element: <ProtectedRoute component={<EditProject />} /> },
+         { path: 'view/:projectId', element: <ProtectedRoute component={<ViewProject />} /> }
       ],
    },
    {

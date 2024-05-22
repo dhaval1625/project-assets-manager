@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 
 export async function copyToClipboard(data) {
    await navigator.clipboard.writeText(data);
+   displayMessage('Copied to your clipboard!')
    return true;
 }
 

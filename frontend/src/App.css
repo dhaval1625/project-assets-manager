@@ -9,6 +9,14 @@
    padding: 0 30px;
 }
 
+div:where(.swal2-container) .swal2-html-container {
+   margin-top: 16px !important;
+}
+
+div:where(.swal2-container) div:where(.swal2-popup) {
+   padding: 0 0 12px !important;
+}
+
 @media (min-width: 1280px) {
    .container {
       max-width: 1500px !important;
