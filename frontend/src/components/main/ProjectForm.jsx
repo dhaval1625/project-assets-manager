@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { formElements, formKeys, formSchemaDef } from '@/utils/project-config';
-import { sanitizeProjectFormData } from '@/utils/helper';
+import { displayMessage, sanitizeProjectFormData } from '@/utils/helper';
 import AddMoreDetails from '../helper/AddMoreDetails';
 import { Switch } from '../ui/switch';
 
@@ -35,6 +35,13 @@ function ProjectForm({ submitHandler, data, isLoading }) {
 
    function onSubmit(values) {
       const sanitizedData = sanitizeProjectFormData(values);
+
+      const enteredDataLength = Object.values(sanitizedData).filter(item => item.length > 0).length;
+      console.log(enteredDataLength);
+      if(enteredDataLength < 2) {
+         displayMessage('Please add atleast one field.', true);
+         return;
+      }
       submitHandler(sanitizedData);
    }
    return (

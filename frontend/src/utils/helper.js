@@ -49,7 +49,7 @@ export function displayMessage(message, isError) {
       text: message,
       showConfirmButton: false,
       timer: 2000,
-      background: isError ? '#9a3737' : '#2c542c',
+      background: isError ? '#5c0826' : '#1b611a',
       color: '#fff',
       backdrop: false,
       width: '350px',

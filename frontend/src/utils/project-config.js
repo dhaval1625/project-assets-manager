@@ -10,7 +10,7 @@ export const formElements = [
    {
       id: 'f2',
       name: 'url',
-      validationSchema: z.string().url({message: 'Please enter a valid url!'}),
+      validationSchema: z.string().url({message: 'Please enter a valid url!'}).optional().or(z.literal('')),
       label: 'URL',
    },
    {
